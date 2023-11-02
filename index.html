@@ -1,0 +1,49 @@
+<script src="https://threejs.org/build/three.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spinning Cube</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+<script src="https://threejs.org/build/three.js"></script>
+<script>
+    // Set up the scene, camera, and renderer.
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    // Create a geometry and a material, then combine them into a mesh.
+    var geometry = new THREE.BoxGeometry();
+    var material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    var cube = new THREE.Mesh(geometry, material);
+
+    // Add the mesh to the scene.
+    scene.add(cube);
+
+    // Move the camera back so we can see the cube.
+    camera.position.z = 5;
+
+    // Create a function to render the scene.
+    function animate() {
+        requestAnimationFrame(animate);
+
+        // Rotate the cube for animation.
+        cube.rotation.x += 0.01;
+        cube.rotation.y += 0.01;
+
+        // Render the scene from the perspective of the camera.
+        renderer.render(scene, camera);
+    }
+
+    // Call the animate function for the first time to kick things off.
+    animate();
+</script>
+</body>
+</html>
